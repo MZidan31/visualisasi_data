@@ -1,0 +1,47 @@
+graph TD
+    %% --- AKTOR ---
+    G[Actor: Guest (Publik)]
+    D[Actor: Dosen Pengusul]
+    A[Actor: Admin LPPM]
+
+    %% --- SISTEM BOUNDARY ---
+    subgraph SIID [Sistem Informasi Inovasi Dosen (SIID)]
+        UC1((Melihat Katalog Publik))
+        UC2((Pencarian Inovasi))
+
+        UC3((Login Sistem))
+        UC4((Logout))
+
+        UC5((Kelola Inovasi (CRUD)))
+        UC6((Upload Bukti (PDF)))
+        UC7((Melihat Status Verifikasi))
+        UC8((Melihat Dashboard Dosen))
+
+        UC9((Verifikasi Inovasi))
+        UC10((Kelola Master Data))
+        UC11((Kelola Data User))
+        UC12((Dashboard Statistik))
+    end
+
+    %% --- RELASI / HUBUNGAN ---
+    G --> UC1
+    G --> UC2
+
+    D --> UC3
+    D --> UC4
+    D --> UC5
+    D --> UC7
+    D --> UC8
+    D --> UC1
+
+    A --> UC3
+    A --> UC4
+    A --> UC9
+    A --> UC10
+    A --> UC11
+    A --> UC12
+    A --> UC1
+
+    %% --- INCLUDE / EXTEND ---
+    UC5 -. include .-> UC6
+    UC2 -. extend .-> UC1
